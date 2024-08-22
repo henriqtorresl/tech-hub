@@ -12,18 +12,14 @@ class App {
     constructor() {
         this.app = express();
         this.http = http.createServer(this.app);
+
+        // Tratando o cors:
+        this.app.use(cors);
         this.io = new Server(this.http, {
             cors: {
-                origin: 'http://localhost:4200',
-                methods: ['GET', 'POST'],
                 credentials: true
             }
         });
-
-        this.app.use(cors({
-            origin: 'http://localhost:4200',
-            credentials: true
-        }));
 
         this.listenServer();
         this.listenSocket();
@@ -39,11 +35,10 @@ class App {
         this.io.on('connection', (socket) => {
             console.log('user connected =>', socket.id);
 
-
             // Evento de mensagem:
             socket.on('message', (msg) => {
-                // this.io.emit('message', msg);
                 console.log(msg)
+                this.io.emit('message', msg); // Envia a mensagem para todos os clientes conectados
             });
         });
     }
