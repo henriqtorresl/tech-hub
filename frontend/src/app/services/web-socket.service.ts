@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Manager } from 'socket.io-client';
+import { Manager, Socket } from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,20 @@ export class WebSocketService {
 
   private readonly api: string = environment.api;
   private manager: Manager = new Manager(this.api);
-  private socket = this.manager.socket('/'); // main namespace
+  private socket: Socket = this.manager.socket('/'); // main namespace
 
   constructor() {
-    this.socket.on('connect', () => {
-      // ...
-    });
+    this.listenForMessages();
+  }
 
-    this.socket.emit('message', ({teste: 'ola'}));
+  messageEvent(msg: any): void {
+    this.socket.emit('message', msg);
+  }
+
+  listenForMessages(): void {
+    this.socket.on('message', (msg: any) => {
+      console.log('Message received: ', msg);
+    });
   }
 
 }
