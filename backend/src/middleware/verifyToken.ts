@@ -1,7 +1,6 @@
 require('dotenv').config();
 import jwt from 'jsonwebtoken';
 
-// middleware que verifica o token
 const checkToken = (req, res, next) => {
 
     const authHeader = req.headers['authorization'];
@@ -13,7 +12,7 @@ const checkToken = (req, res, next) => {
 
     try {
 
-        const secret: string | undefined = process.env.SECRET
+        const secret = process.env.SECRET
 
         jwt.verify(token, secret!);
 
