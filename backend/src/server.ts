@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import routes from './routes/index/routes';
 
 class App {
 
@@ -13,8 +14,10 @@ class App {
         this.app = express();
         this.http = http.createServer(this.app);
 
-        // Tratando o cors:
-        this.app.use(cors);
+        this.app.use(cors());
+        this.app.use(express.json());
+        this.app.use(routes);
+
         this.io = new Server(this.http, {
             cors: {
                 credentials: true
