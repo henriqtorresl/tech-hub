@@ -12,8 +12,8 @@ const authController = new AuthController();
 // quando authController.login é chamado pelo Express, ele ainda tem 
 // o contexto correto, e this.service estará acessível.
 
-authRouter.post('/login', authController.login.bind(authController));
 authRouter.post('/register', authController.register.bind(authController));
+authRouter.post('/login', authController.login.bind(authController));
 
 // Usar bind é uma forma de evitar problemas com a perda 
 // de contexto de this, especialmente ao passar métodos de 
