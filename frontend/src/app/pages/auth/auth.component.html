@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="auth" #loginRef>
+        <section>
+            <!-- <img src="../../../assets/logo.png" alt=""> -->
+
+            <form [formGroup]="loginForm">
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="CPF" formControlName="cpf">
+                  <mat-icon matIconSuffix>person</mat-icon>
+                </mat-form-field>
+              
+                <mat-form-field appearance="outline">
+                    <input #loginPassword type="password" matInput placeholder="Senha" formControlName="password">
+                    <mat-icon matIconSuffix style="cursor: pointer;" (click)="visibleLoginPassword()">visibility_off</mat-icon>
+                </mat-form-field>
+    
+                <div>
+                    <input type="submit" (click)="login()" value="Entrar">
+                </div>
+            </form>
+
+            <p>Não possui conta? <button (click)="switchToRegister()">Cadastre-se</button></p>
+        </section>
+    </div>
+
+    <div class="auth" #registerRef style="display: none;">
+        <section>
+            <!-- <img src="../../../assets/logo.png" alt=""> -->
+
+            <form [formGroup]="registerForm">
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Nome" formControlName="name">
+                    <mat-icon matIconSuffix>person_pin</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="CPF" formControlName="cpf">
+                  <mat-icon matIconSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-icon matIconSuffix>mail</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Telefone" formControlName="phone">
+                    <mat-icon matIconSuffix>phone_iphone</mat-icon>
+                </mat-form-field>
+              
+                <mat-form-field appearance="outline">
+                    <input #registerPassword type="password" matInput placeholder="Senha" formControlName="password">
+                    <mat-icon matIconSuffix style="cursor: pointer;" (click)="visibleRegisterPassword()">visibility_off</mat-icon>
+                </mat-form-field>
+    
+                <div>
+                    <input type="submit" (click)="register()" value="Cadastre-se">
+                </div>
+            </form>
+
+            <p>Já Possui uma conta? <button (click)="switchToLogin()">Entrar</button></p>
+        </section>
+    </div>
+</div>
