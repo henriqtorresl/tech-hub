@@ -2,7 +2,7 @@ require('dotenv').config();
 import jwt from 'jsonwebtoken';
 
 // middleware que verifica o token
-function checkToken(req, res, next) {
+const checkToken = (req, res, next) => {
 
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -24,3 +24,5 @@ function checkToken(req, res, next) {
     }
 
 }
+
+export default checkToken;
