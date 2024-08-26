@@ -1,0 +1,157 @@
+a {
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+
+mat-icon {
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+// Mobile
+.container-mobile {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    border-right: 1px solid #1F2937;
+
+    div {
+        height: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ul {
+        height: 40%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
+
+.container {
+    display: none;
+}
+
+// Tablet
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .container-mobile {
+        display: none;
+    }
+
+    .container {
+        display: flex;
+        color: #fff;
+        border-top: 1px solid #1F2937;
+        width: 100%;
+        height: 10%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+
+        div {
+            width: 15%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul {
+            width: 80%;
+            height: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    }
+}
+
+// Desktop
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .container-mobile {
+        display: none;
+    }
+
+    .container {
+        display: flex;
+        color: #fff;
+        border-top: 1px solid #1F2937;
+        width: 100%;
+        height: 10%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+
+        div {
+            width: 15%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul {
+            width: 80%;
+            height: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    }
+}
+
+// Telas grandes
+@media screen and (min-width: 1200px) {
+    .container-mobile {
+        display: none;
+    }
+
+    .container {
+        display: flex;
+        color: #fff;
+        border-top: 1px solid #1F2937;
+        width: 100%;
+        height: 10%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+
+        div {
+            width: 15%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul {
+            width: 80%;
+            height: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    }
+}
