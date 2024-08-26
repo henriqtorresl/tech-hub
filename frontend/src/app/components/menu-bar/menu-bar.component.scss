@@ -70,6 +70,10 @@ mat-icon {
 
     height: 100%;
     width: 15%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
     flex-direction: column;
     color: #fff;
     border-right: 1px solid #1F2937;
