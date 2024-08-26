@@ -37,9 +37,25 @@
         flex-direction: column;
         align-items: center;
 
-        img {
+        section {
+            color: #fff;
+            justify-content: center;
             width: 150px;
             height: 100px;
+
+            p {
+                font-weight: bold;
+                background-color: #1F2937;
+                padding: 8px;
+                border-radius: 5px;
+                font-size: 20px;
+                cursor: default;
+                transition: 0.5s;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
         }
 
         form {
@@ -71,16 +87,17 @@
                 input {
                     width: 100%;
                     padding: 10px 0 10px 0;
-                    background-color: #3F51B5;
+                    background-color: #1F2937;
                     border: none;
                     text-transform: uppercase;
                     color: #fff;
                     border-radius: 5px;
                     margin-bottom: 30px;
                     cursor: pointer;
+                    transition: 0.5s;
 
                     &:hover {
-                        background-color: #334296;
+                        background-color: #161d27;
                     }
                 }
             }
@@ -96,9 +113,10 @@
                 font-size: 15px;
                 cursor: pointer;
                 color: #fff;
+                transition: 0.5s;
 
                 &:hover {
-                    color: #6972a5;
+                    color: #646566;
                 }
             }
         }

@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthComponent implements OnInit {
 
+  title: string = '<TechHub />';
   @ViewChild('loginRef') loginRef!: ElementRef;
   @ViewChild('registerRef') registerRef!: ElementRef;
   @ViewChild('loginPassword') loginPasswordRef!: ElementRef;
