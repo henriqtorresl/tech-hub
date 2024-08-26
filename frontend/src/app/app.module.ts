@@ -16,13 +16,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     HomeComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    ChatComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
