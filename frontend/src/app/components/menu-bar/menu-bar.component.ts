@@ -50,4 +50,9 @@ export class MenuBarComponent implements AfterViewChecked {
       }
     }
   }
+
+  isActive(route: string): string {
+    return this.router.url.includes(route) ? 'is-active' : '';
+  }
+
 }

@@ -1,13 +1,19 @@
+// Estilos gerais do componente (independem de responsividade):
 a {
+    color: #fff;
+    text-decoration: none;
     cursor: pointer;
     transition: 0.5s;
     display: flex;
     justify-content: start;
     align-items: center;
     width: 100%;
+    padding: 8px;
+    border-radius: 5px;
 
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.02);
+        background-color: #1F2937;
     }
 }
 
@@ -17,8 +23,12 @@ mat-icon {
     transition: 0.5s;
 
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.02);
     }
+}
+
+.is-active {
+    font-weight: bold;
 }
 
 // Mobile
