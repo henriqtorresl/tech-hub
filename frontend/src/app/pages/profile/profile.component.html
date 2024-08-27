@@ -45,22 +45,24 @@
 
         </div>
 
-        <ng-container *ngIf="posts.length == 0 else havePosts">
-            <div class="no-posts">
-                Você não possui publicações
-                <mat-icon>sentiment_dissatisfied</mat-icon>
+        <div class="posts">
+            <div class="posts-title">
+                <mat-icon>
+                    apps
+                </mat-icon>
+                <h3>Publicações</h3>
             </div>
-        </ng-container>
-        
-        <ng-template #havePosts>
-            <div class="posts">
-                <div class="posts-title">
-                    <mat-icon>
-                        apps
-                    </mat-icon>
-                    <h3>Publicações</h3>
+
+            <ng-container *ngIf="posts.length == 0 else havePosts">
+                <div class="no-posts">
+                    Você não possui publicações
+                    <mat-icon>sentiment_dissatisfied</mat-icon>
                 </div>
-            </div>
-        </ng-template>
+            </ng-container>
+
+            <ng-template #havePosts>
+                
+            </ng-template>
+        </div>
     </ng-template>
 </div>
