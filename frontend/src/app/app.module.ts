@@ -20,6 +20,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { MaskCpfPipe } from './pipes/mask-cpf.pipe';
 import { PostComponent } from './components/post/post.component';
+import { FormatCpfPipe } from './pipes/format-cpf.pipe';
+import { FormatPhonePipe } from './pipes/format-phone.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { PostComponent } from './components/post/post.component';
     ChatComponent,
     ProfileComponent,
     MaskCpfPipe,
-    PostComponent
+    PostComponent,
+    FormatCpfPipe,
+    FormatPhonePipe
   ],
   imports: [
     BrowserModule,
