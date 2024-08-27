@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { LoginBody, RegisterBody } from '../interfaces/auth';
-import UsuarioRepository from '../repository/usuario';
+import UserRepository from '../repository/user';
 
 const DADOS_CRIPTOGRAFAR = {
     algoritmo: "aes256",
@@ -9,10 +9,10 @@ const DADOS_CRIPTOGRAFAR = {
 
 export default class AuthService {
 
-    private usuarioRepository: UsuarioRepository;
+    private userRepository: UserRepository;
 
     constructor() {
-        this.usuarioRepository = new UsuarioRepository();
+        this.userRepository = new UserRepository();
     }
 
     async register(body: RegisterBody) {
@@ -20,7 +20,7 @@ export default class AuthService {
             // Criptografando a senha...
             body.password = this.encrypt(body.password);
 
-            await this.usuarioRepository.createUser(body);
+            await this.userRepository.createUser(body);
         } catch(error) {
             console.log('Erro: ', error);
         }

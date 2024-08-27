@@ -1,8 +1,8 @@
-import { connection } from "../config/connection";
-import { RegisterBody } from "../interfaces/auth";
-import { Usuario } from "../interfaces/usuario";
+import { connection } from '../config/connection';
+import { RegisterBody } from '../interfaces/auth';
+import { User } from '../interfaces/user';
 
-export default class UsuarioRepository {
+export default class UserRepository {
 
     constructor() {}
 
@@ -26,7 +26,7 @@ export default class UsuarioRepository {
 
     async getRegistredUsers() {
         let client: any;
-        let usuarios: Usuario[] = [];
+        let users: User[] = [];
         const sql = `
             SELECT cpf, email, telefone FROM usuario u;
         `;
@@ -34,18 +34,18 @@ export default class UsuarioRepository {
         try {
             client = await connection();
             const response = await client.query(sql);
-            usuarios = response.rows;
+            users = response.rows;
         } catch (err) {
-            console.error('\nErro ao criar usuario:', err);
+            console.error('\nErro ao buscar usuarios:', err);
         } finally {
             if (client) client.release();
-            return usuarios;
+            return users;
         }
     }
 
     async getUserByCpf(cpf: string) {
         let client: any;
-        let usuario: any;
+        let user: any;
         const sql = `
             SELECT * FROM usuario u 
             WHERE cpf = $1;
@@ -55,12 +55,33 @@ export default class UsuarioRepository {
         try {
             client = await connection();
             const response = await client.query(sql, values);
-            usuario = response.rows[0];
+            user = response.rows[0];
         } catch (err) {
-            console.error('\nErro ao criar usuario:', err);
+            console.error('\nErro ao buscar usuario:', err);
         } finally {
             if (client) client.release();
-            return usuario;
+            return user;
+        }
+    }
+
+    async getPersonalData(idUsuario: string) {
+        let client: any;
+        let user: any;
+        const sql = `
+            SELECT * FROM usuario u 
+            WHERE id_usuario = $1;
+        `;
+        const values = [idUsuario];
+
+        try {
+            client = await connection();
+            const response = await client.query(sql, values);
+            user = response.rows[0];
+        } catch (err) {
+            console.error('\nErro ao buscar usuario:', err);
+        } finally {
+            if (client) client.release();
+            return user;
         }
     }
 

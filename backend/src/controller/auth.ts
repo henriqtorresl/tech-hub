@@ -1,24 +1,24 @@
-import { Request, Response } from "express";
-import AuthService from "../service/auth";
-import { LoginBody, RegisterBody } from "../interfaces/auth";
-import UsuarioRepository from "../repository/usuario";
-import { Usuario } from "../interfaces/usuario";
+import { Request, Response } from 'express';
+import AuthService from '../service/auth';
+import { LoginBody, RegisterBody } from '../interfaces/auth';
 import jwt from 'jsonwebtoken';
+import UserRepository from '../repository/user';
+import { User } from '../interfaces/user';
 
 export default class AuthController {
 
     private service: AuthService;
-    private usuarioRepository: UsuarioRepository;
+    private userRepository: UserRepository;
 
     constructor() {
         this.service = new AuthService();
-        this.usuarioRepository = new UsuarioRepository();
+        this.userRepository = new UserRepository();
     }
 
     async register(req: Request, res: Response) {
         try {
 
-            const usuarios: Usuario[] = await this.usuarioRepository.getRegistredUsers();
+            const usuarios: User[] = await this.userRepository.getRegistredUsers();
             const body: RegisterBody = req.body;
 
             // Verifique se o telefone, e-mail ou CPF já está registrado
@@ -71,13 +71,13 @@ export default class AuthController {
         }
 
         try {
-            const usuario: Usuario = await this.usuarioRepository.getUserByCpf(body.cpf);
+            const user: User = await this.userRepository.getUserByCpf(body.cpf);
 
-            if (!usuario) {
+            if (!user) {
                 return res.status(404).json({ msg: 'Usuário não encontrado!' });
             }
 
-            const userPassword: string = this.service.decrypt(usuario.senha);
+            const userPassword: string = this.service.decrypt(user.senha);
 
             if (body.password != userPassword) {
                 return res.status(404).json({ msg: 'Senha inválida!' });
@@ -87,7 +87,7 @@ export default class AuthController {
 
             const token = jwt.sign(
                 {
-                    id: usuario.id_usuario
+                    id: user.id_usuario
                 }
                 , secret!
             );
@@ -96,7 +96,7 @@ export default class AuthController {
                 {
                     msg: 'Logado com sucesso!',
                     token: token,
-                    usuario: usuario
+                    usuario: user
                 }
             );
         } catch (error) {
