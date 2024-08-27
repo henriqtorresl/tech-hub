@@ -8,14 +8,14 @@ export class TokenService {
 
   constructor() { }
 
-  // getHeaders(): HttpHeaders {
-  //   const token = localStorage.getItem('token');
-  //   let headers = new HttpHeaders();
-  //   if (token) {
-  //     headers = headers.set('Authorization', `Bearer ${token}`);
-  //   }
+  getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
 
-  //   return headers;
-  // }
+    return headers;
+  }
 
 }

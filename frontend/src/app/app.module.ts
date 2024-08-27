@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { MaskCpfPipe } from './pipes/mask-cpf.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HomeComponent,
     MenuBarComponent,
     ChatComponent,
-    ProfileComponent
+    ProfileComponent,
+    MaskCpfPipe
   ],
   imports: [
     BrowserModule,

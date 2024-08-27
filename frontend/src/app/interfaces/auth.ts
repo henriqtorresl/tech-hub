@@ -1,4 +1,4 @@
-import { Usuario } from "./usuario";
+import { User } from "./user";
 
 export interface RegisterBody {
     name: string;
@@ -20,5 +20,5 @@ export interface RegisterResponse {
 export interface LoginResponse {
     msg: string;
     token: string;
-    usuario: Usuario;
+    usuario: User;
 }

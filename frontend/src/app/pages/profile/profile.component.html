@@ -1,23 +1,52 @@
 <div class="container">
-    <div class="person-info">
+    <ng-container *ngIf="!user else loaded">
+        <div class="spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-container>
 
-        <div>
-            <h2>Dados Pessoais</h2>
-            <button (click)="logout()">
-                <mat-icon>logout</mat-icon>
-            </button>
+    <ng-template #loaded>
+        <div class="person-info">
+
+            <div>
+                <h2>Dados Pessoais</h2>
+                <button (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </div>
+
+            <ul>
+                <li>
+                    <span matTooltip="Nome">
+                        <mat-icon>assignment_ind</mat-icon>
+                    </span>
+                    {{ user.nome }}
+                </li>
+                <li>
+                    <span matTooltip="E-mail">
+                        <mat-icon>mail</mat-icon>
+                    </span>
+                    {{ user.email }}
+                </li>
+                <li>
+                    <span matTooltip="Telefone">
+                        <mat-icon>phone_iphone</mat-icon>
+                    </span>
+                    {{ user.telefone }}
+                </li>
+                <li>
+                    <span matTooltip="CPF">
+                        <mat-icon>badge</mat-icon>
+                    </span>
+                    {{ user.cpf | maskCpf }}
+                </li>
+            </ul>
+
         </div>
 
-        <ul>
-            <li><span>Nome:</span> </li>
-            <li><span>CPF:</span></li>   <!--Criar um pipe que borre os primeiros digitos..-->
-            <li><span>E-mail:</span></li>
-            <li><span>Telefone:</span></li>
-        </ul>
+        <div class="posts">
 
-    </div>
+        </div>
+    </ng-template>
 
-    <div class="posts">
-
-    </div>
 </div>

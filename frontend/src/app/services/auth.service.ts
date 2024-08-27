@@ -29,14 +29,14 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    const idUsuario = localStorage.getItem('idUsuario');
+    const idUser = localStorage.getItem('idUser');
 
-    return (token == null && idUsuario == null) ? false : true;
+    return (token == null && idUser == null) ? false : true;
   }
 
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('idUsuario');
+    localStorage.removeItem('idUser');
   }
 
 }

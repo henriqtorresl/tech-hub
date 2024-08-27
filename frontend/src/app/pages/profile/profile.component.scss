@@ -4,6 +4,19 @@
     height: 90%;
 }
 
+.spinner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    mat-spinner {
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
+
 .person-info {
     padding: 20px 0 20px 0;
     width: 100%;
@@ -19,6 +32,10 @@
 
         h2 {
             color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #1F2937;
+            margin-right: 3px;
         }
 
         button {
@@ -42,12 +59,11 @@
         li {
             color: #fff;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
             span {
                 font-weight: bold;
-                padding: 5px;
-                // border-radius: 5px;
-                // background-color: #1F2937;
-                // margin-right: 3px;
+                margin-right: 15px;
             }
         }
     }

@@ -87,7 +87,7 @@ export class AuthComponent implements OnInit {
     this.authService.login(user).subscribe((response) => {
 
       localStorage.setItem('token', response.token);
-      localStorage.setItem('idUsuario', response.usuario.id_usuario.toString());
+      localStorage.setItem('idUser', response.usuario.id_usuario.toString());
 
       this.snackbar.open(response.msg, 'OK', {
         duration: 2500
