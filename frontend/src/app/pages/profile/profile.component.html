@@ -10,7 +10,7 @@
         <div class="person-info">
 
             <div>
-                <h2>Dados Pessoais</h2>
+                <h2>Perfil do Usuário</h2>
                 <button (click)="logout()">
                     <mat-icon>logout</mat-icon>
                 </button>
@@ -55,7 +55,7 @@
 
             <ng-container *ngIf="posts.length == 0 else havePosts">
                 <div class="no-posts">
-                    Você não possui publicações
+                    Ainda não há publicações
                     <mat-icon>sentiment_dissatisfied</mat-icon>
                 </div>
             </ng-container>

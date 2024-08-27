@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,8 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.scss']
 })
-export class MenuBarComponent implements AfterViewChecked {
+export class MenuBarComponent implements OnInit, AfterViewChecked {
 
+  idUser!: string;
   titleMobile: string = '<TH />';
   title: string = '<TechHub />';
   @ViewChild('containerMobile') containerMobile!: ElementRef;
@@ -18,9 +19,17 @@ export class MenuBarComponent implements AfterViewChecked {
     private renderer: Renderer2 // Injeção do serviço Renderer2 para manipulação segura do DOM
   ) {}
 
+  ngOnInit(): void {
+    this.getIdUser();
+  }
+
   // Este método é chamado automaticamente após a visualização do componente ser verificada
   ngAfterViewChecked(): void {
     this.updateContainerVisibility(); // Atualiza a visibilidade dos containers
+  }
+
+  getIdUser(): void {
+    this.idUser = localStorage.getItem('idUser')!;
   }
 
   // O HostListener escuta o evento de redimensionamento da janela

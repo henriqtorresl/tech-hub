@@ -23,7 +23,7 @@
         </li>
         <li>            
             <a 
-                routerLink="/profile"
+                [routerLink]="['/profile', 1]"
                 [ngClass]="isActive('profile')"    
             >
                 <mat-icon>person</mat-icon>
@@ -59,7 +59,7 @@
         </li>
         <li>            
             <a 
-                routerLink="/profile"
+                [routerLink]="['/profile', idUser]"
                 [ngClass]="isActive('profile')"    
             >
                 <mat-icon>person</mat-icon>

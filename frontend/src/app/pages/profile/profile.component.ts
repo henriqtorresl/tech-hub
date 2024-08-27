@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,15 +14,25 @@ export class ProfileComponent implements OnInit {
 
   user!: User;
   posts: any[] = [];
+  idUser!: string;
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    this.getIdUser();
     this.getPersonalData();
+  }
+
+  getIdUser(): void {
+    this.activatedRoute.params.pipe(take(1)).subscribe((response) => {
+      const { id } = response;
+      this.idUser = id;
+    });
   }
 
   logout(): void {
@@ -30,11 +41,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getPersonalData(): void {
-    const idUser = localStorage.getItem('idUser');
-
-    console.log(idUser)
-
-    this.userService.getPersonalData(idUser!).subscribe((response) => {
+    this.userService.getPersonalData(this.idUser).subscribe((response) => {
       this.user = response;
     });
   }
