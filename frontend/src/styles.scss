@@ -4,9 +4,9 @@
 @include mat-core();
 
 // criando as variaveis para as cores
-$custom-app-primary: mat-palette($mat-grey, 900);  // Cor preta
-$custom-app-secundary: mat-palette($mat-grey, 900);
-$custom-app-warn: mat-palette($mat-red);
+$custom-app-primary: mat-palette($mat-grey, 900);   // preto        -> primary
+$custom-app-secundary: mat-palette($mat-grey, 50);  // branco       -> accent
+$custom-app-warn: mat-palette($mat-red);            // vermelho     -> warn
 
 // variavel para o tema
 $custom-theme: mat-light-theme($custom-app-primary, $custom-app-secundary, $custom-app-warn);
