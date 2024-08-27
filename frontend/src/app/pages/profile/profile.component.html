@@ -1,13 +1,19 @@
 <div class="container">
     <div class="person-info">
 
-        <!-- Dados:
-        Nome:
-        cpf:
-        email:
-        numero:
+        <div>
+            <h2>Dados Pessoais</h2>
+            <button (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
 
-        botao de sair -->
+        <ul>
+            <li><span>Nome:</span> </li>
+            <li><span>CPF:</span></li>   <!--Criar um pipe que borre os primeiros digitos..-->
+            <li><span>E-mail:</span></li>
+            <li><span>Telefone:</span></li>
+        </ul>
 
     </div>
 
