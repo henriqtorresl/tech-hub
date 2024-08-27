@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginBody, RegisterBody } from 'src/app/interfaces/auth';
@@ -50,6 +50,39 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  cpfValidator(cpf: string): boolean {
+    // Remove qualquer caractere que não seja dígito
+    const cleanedValue = cpf.replace(/\D/g, '');
+
+    // Verifica se o valor está no formato correto '123.456.789-10'
+    const isValidFormat = /^(\d{3}\.\d{3}\.\d{3}-\d{2})$/.test(cpf);
+
+    // Verifica se a entrada contém apenas números e se está no formato correto
+    if (cleanedValue.length !== 11 || !isValidFormat) {
+      return  false;
+    }
+
+    return true;
+  }
+
+  phoneValidator(phone: string): boolean {
+    // Remove qualquer caractere que não seja dígito
+    const cleanedValue = phone.replace(/\D/g, '');
+  
+    // Verifica se o valor está no formato correto '(61) 98444-1480' ou '(61) 8444-1480'
+    const isValidFormat = /^\(\d{2}\) \d{4,5}-\d{4}$/.test(phone);
+  
+    // Verifica se a entrada contém 10 ou 11 dígitos
+    const isValidLength = cleanedValue.length === 10 || cleanedValue.length === 11;
+  
+    // Verifica se a entrada contém apenas números e se está no formato correto
+    if (!isValidLength || !isValidFormat) {
+      return false;
+    }
+  
+    return true;
+  }
+
   switchToRegister(): void {
     this.loginRef.nativeElement.style.display = 'none';
     this.registerRef.nativeElement.style.display = 'flex';
@@ -82,7 +115,13 @@ export class AuthComponent implements OnInit {
       password: this.loginForm.value.password
     }
 
-    // Implementar a lógica dos validadores de formulario, pra validar o formato do cpf
+    if (!this.cpfValidator(user.cpf) && user.cpf != '') {
+      this.snackbar.open('CPF inválido', 'OK', {
+        duration: 2500
+      });
+
+      return;
+    }
 
     this.authService.login(user).subscribe((response) => {
 
@@ -111,6 +150,22 @@ export class AuthComponent implements OnInit {
       email: this.registerForm.value.email,
       phone: this.registerForm.value.phone,
       password: this.registerForm.value.password
+    }
+
+    if (!this.cpfValidator(newUser.cpf) && newUser.cpf != '') {
+      this.snackbar.open('CPF inválido', 'OK', {
+        duration: 2500
+      });
+
+      return;
+    }
+
+    if (!this.phoneValidator(newUser.phone) && newUser.phone != '') {
+      this.snackbar.open('Número de telefone inválido', 'OK', {
+        duration: 2500
+      });
+
+      return;
     }
 
     this.authService.register(newUser).subscribe((response) => {

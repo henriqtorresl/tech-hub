@@ -5,8 +5,8 @@
 
             <form [formGroup]="loginForm">
                 <mat-form-field appearance="outline">
-                  <input matInput placeholder="CPF" formControlName="cpf">
-                  <mat-icon matIconSuffix>person</mat-icon>
+                  <input matInput placeholder="CPF" formControlName="cpf" [ngModel]="loginForm.value.cpf | formatCpf">
+                  <mat-icon matIconSuffix>badge</mat-icon>
                 </mat-form-field>
               
                 <mat-form-field appearance="outline">
@@ -29,13 +29,13 @@
 
             <form [formGroup]="registerForm">
                 <mat-form-field appearance="outline">
-                    <input matInput placeholder="Nome" formControlName="name">
+                    <input matInput placeholder="Nome Completo" formControlName="name">
                     <mat-icon matIconSuffix>person_pin</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                  <input matInput placeholder="CPF" formControlName="cpf">
-                  <mat-icon matIconSuffix>person</mat-icon>
+                  <input matInput placeholder="CPF" formControlName="cpf" [ngModel]="registerForm.value.cpf | formatCpf">
+                  <mat-icon matIconSuffix>badge</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
@@ -44,7 +44,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                    <input matInput placeholder="Telefone" formControlName="phone">
+                    <input matInput placeholder="Telefone" formControlName="phone" [ngModel]="registerForm.value.phone | formatPhone">
                     <mat-icon matIconSuffix>phone_iphone</mat-icon>
                 </mat-form-field>
               

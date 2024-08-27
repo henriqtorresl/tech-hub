@@ -101,6 +101,14 @@
                     &:hover {
                         background-color: #161d27;
                     }
+
+                    &:disabled {
+                        cursor: default;
+
+                        &:hover {
+                            background-color: #1F2937;
+                        }
+                    }
                 }
             }
         }
