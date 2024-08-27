@@ -42,6 +42,7 @@ CREATE TABLE Mensagem (
     id_mensagem SERIAL PRIMARY KEY,
     data DATE,
     conteudo VARCHAR,
+    lida BOOLEAN,
     id_conversa INTEGER,
     id_usuario_remetente INTEGER,
     id_usuario_destinatario INTEGER,
