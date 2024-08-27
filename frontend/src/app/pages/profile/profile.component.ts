@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
 
   user!: User;
+  posts: any[] = [];
 
   constructor(
     private authService: AuthService,

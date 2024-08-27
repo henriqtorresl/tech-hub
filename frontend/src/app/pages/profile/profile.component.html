@@ -1,4 +1,5 @@
 <div class="container">
+    <!-- Corrigir as condições do load.. -->
     <ng-container *ngIf="!user else loaded">
         <div class="spinner">
             <mat-spinner></mat-spinner>
@@ -44,9 +45,22 @@
 
         </div>
 
-        <div class="posts">
-
-        </div>
+        <ng-container *ngIf="posts.length == 0 else havePosts">
+            <div class="no-posts">
+                Você não possui publicações
+                <mat-icon>sentiment_dissatisfied</mat-icon>
+            </div>
+        </ng-container>
+        
+        <ng-template #havePosts>
+            <div class="posts">
+                <div class="posts-title">
+                    <mat-icon>
+                        apps
+                    </mat-icon>
+                    <h3>Publicações</h3>
+                </div>
+            </div>
+        </ng-template>
     </ng-template>
-
 </div>
