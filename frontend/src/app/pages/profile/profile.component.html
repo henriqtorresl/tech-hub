@@ -11,9 +11,16 @@
 
             <div>
                 <h2>Perfil do Usuário</h2>
-                <button (click)="logout()">
-                    <mat-icon>logout</mat-icon>
-                </button>
+                <ng-container *ngIf="isMyProfile else isntMyProfile">
+                    <button matTooltip="Sair" (click)="logout()">
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                </ng-container>
+                <ng-template #isntMyProfile>
+                    <button matTooltip="Enviar Mensagem" (click)="sendMessage()">
+                        <mat-icon>forum</mat-icon>
+                    </button>
+                </ng-template>
             </div>
 
             <ul>

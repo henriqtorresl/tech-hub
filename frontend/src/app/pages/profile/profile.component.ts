@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   user!: User;
   posts: any[] = [];
   idUser!: string;
+  isMyProfile!: boolean;
 
   constructor(
     private authService: AuthService,
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIdUser();
+    this.verifyProfile();
     this.getPersonalData();
   }
 
@@ -35,9 +37,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  verifyProfile(): void {
+    this.isMyProfile = this.idUser == localStorage.getItem('idUser') ? true : false; 
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['auth']);
+  }
+
+  sendMessage(): void {
+    // Logica de enviar mensagem
   }
 
   getPersonalData(): void {
