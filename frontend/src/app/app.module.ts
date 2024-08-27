@@ -19,6 +19,7 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { MaskCpfPipe } from './pipes/mask-cpf.pipe';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MaskCpfPipe } from './pipes/mask-cpf.pipe';
     MenuBarComponent,
     ChatComponent,
     ProfileComponent,
-    MaskCpfPipe
+    MaskCpfPipe,
+    PostComponent
   ],
   imports: [
     BrowserModule,
