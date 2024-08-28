@@ -14,7 +14,8 @@ export default class PostRepository {
             LEFT JOIN comentario c USING(id_publicacao)
             LEFT JOIN curtida ct USING(id_publicacao)
             WHERE p.id_usuario = $1
-            GROUP BY p.id_publicacao;
+            GROUP BY p.id_publicacao
+            ORDER BY id_publicacao DESC;
         `;
         const values = [idUser];
 
