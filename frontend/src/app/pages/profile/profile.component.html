@@ -60,15 +60,27 @@
                 <h3>Publicações</h3>
             </div>
 
-            <ng-container *ngIf="posts.length == 0 else havePosts">
-                <div class="no-posts">
-                    Ainda não há publicações
-                    <mat-icon>sentiment_dissatisfied</mat-icon>
+            <ng-container *ngIf="loadedPosts == false else loaded">
+                <div class="spinner">
+                    <mat-spinner></mat-spinner>
                 </div>
             </ng-container>
-
-            <ng-template #havePosts>
-                
+            
+            <ng-template #loaded>
+                <ng-container *ngIf="posts.length == 0 else havePosts">
+                    <div class="no-posts">
+                        Ainda não há publicações
+                        <mat-icon>sentiment_dissatisfied</mat-icon>
+                    </div>
+                </ng-container>
+    
+                <ng-template #havePosts>
+                    <div class="posts-content">
+                        <ng-container *ngFor="let post of posts">
+                            <app-post [post]="post"></app-post>
+                        </ng-container>
+                    </div>
+                </ng-template>
             </ng-template>
         </div>
     </ng-template>

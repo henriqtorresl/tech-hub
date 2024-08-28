@@ -1,0 +1,57 @@
+// Mobile
+.card {
+    padding: 10px;
+    color: #fff;
+    border-top: 1px solid #1F2937;
+    border-bottom: 1px solid #1F2937;
+    padding: 20px;
+    position: relative; // Permite que .interactions seja posicionado em relação a .card
+
+    &:hover {
+        .interactions {
+            display: flex;
+        }
+    }
+}
+
+.interactions {
+    display: none;
+    backdrop-filter: blur(1px);
+    justify-content: center;
+    align-items: center;
+    position: absolute; // Posiciona .interactions em relação a .card
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // Centraliza .interactions no meio da .card
+    width: 100%; // Faz com que a largura seja igual à da .card
+    height: 100%; // Faz com que a altura seja igual à da .card
+    z-index: 1; // Garante que .interactions fique sobreposto
+
+    div {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        cursor: default;
+
+        mat-icon {
+            margin-left: 5px;
+        }
+    }
+}
+
+// Tablet
+@media screen and (min-width: 768px) and (max-width: 992px) {
+ 
+}
+
+// Desktop
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+
+}
+
+// Telas grandes
+@media screen and (min-width: 1200px) {
+
+}
