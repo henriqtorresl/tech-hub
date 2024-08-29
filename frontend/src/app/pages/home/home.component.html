@@ -8,40 +8,7 @@
 
     <div class="body">
         <ng-container *ngFor="let post of posts">
-            <div class="card">
-                <div class="title">
-                    <h4>{{ post.nome_usuario }}</h4>
-                    <mat-icon>info</mat-icon>
-                </div>
-
-                <div class="content">
-                    <h4>{{ post.titulo }}</h4>
-                    <p>{{ post.conteudo }}</p>
-                </div>
-
-                <div class="engagement">
-                    <div>
-                        <mat-icon>favorite</mat-icon>
-                        {{ post.qnt_curtidas }}
-                    </div>
-
-                    <p>
-                        {{ post.qnt_comentarios }} comentários
-                    </p>
-                </div>
-
-                <div class="interactions">
-                    <button>
-                        <mat-icon>thumb_up</mat-icon>
-                        Gostei
-                    </button>
-
-                    <button>
-                        <mat-icon>comment</mat-icon>
-                        Comentar
-                    </button>
-                </div>
-            </div>
+            <app-post [post]="post" [haveTitle]="true"></app-post>
         </ng-container>
     </div>
 </div>

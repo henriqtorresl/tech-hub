@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private postService: PostService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getIdUser();
@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
   }
 
   verifyProfile(): void {
-    this.isMyProfile = this.idUser == localStorage.getItem('idUser') ? true : false; 
+    this.isMyProfile = this.idUser == localStorage.getItem('idUser') ? true : false;
   }
 
   logout(): void {
@@ -65,7 +65,11 @@ export class ProfileComponent implements OnInit {
     this.postService.getUserPosts(this.idUser!).subscribe((response) => {
       this.posts = response;
       this.loadedPosts = true;
-    });
+    },
+      () => {
+        this.loadedPosts = true;
+
+      });
   }
 
 }

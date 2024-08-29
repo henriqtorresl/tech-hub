@@ -85,8 +85,15 @@
     }
 }
 
+.posts {
+    height: 68%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .no-posts {
-    margin-top: 100px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,20 +106,13 @@
     }
 }
 
-.posts {
-    height: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
 .posts-title {
     border-top: 1px solid #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
+    margin-bottom: 10px;
 
     mat-icon {
         margin-right: 5px;
@@ -135,6 +135,10 @@
         width: 85%;
         height: 100%;
     }
+
+    .posts {
+        height: 70%;
+    }
 }
 
 // Desktop
@@ -147,6 +151,10 @@
         width: 85%;
         height: 100%;
     }
+
+    .posts {
+        height: 70%;
+    }
 }
 
 // Telas grandes
@@ -158,5 +166,9 @@
         z-index: 1000;
         width: 85%;
         height: 100%;
+    }
+
+    .posts {
+        height: 70%;
     }
 }

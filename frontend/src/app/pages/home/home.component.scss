@@ -73,109 +73,6 @@
     overflow: auto;
 }
 
-.card {
-    width: 100%;
-    background-color: #1F2937;
-    margin-bottom: 10px;
-    color: #fff;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.title {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #011226;  
-    h4 {
-        cursor: pointer;
-
-        &:hover {
-            color: #71B7FB;
-            text-decoration: underline solid #71B7FB;
-        }
-    }
-
-    mat-icon {
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 0.5s;
-
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
-}
-
-.content {
-    border-bottom: 1px solid #011226;  
-    padding: 10px 0 10px 0;
-
-    h4 {
-        margin-bottom: 15px;
-    }
-}
-
-.engagement {
-    padding: 1px 0 1px 0;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #011226;  
-    font-size: 12px;
-    
-    div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        mat-icon {
-            font-size: 14px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-}
-
-.interactions {
-    padding: 5px 0 5px 0;
-    width: 100%;
-    display: flex;
-
-    button {
-        border: none;
-        border-radius: 5px;
-        background-color: transparent;
-        color: #fff;
-        font-size: 15px;
-        font-family: "Lexend", sans-serif;
-        cursor: pointer;
-        padding: 5px;
-        margin-right: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 0.5s;
-
-        mat-icon {
-            margin-right: 5px;
-        }
-
-        &:hover {
-            background-color: #011226;
-        }
-    }
-}
-
 // Tablet
 @media screen and (min-width: 768px) and (max-width: 992px) {
     .container {
@@ -201,11 +98,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .card {
-        width: 90%;
-        border-radius: 10px;
     }
 }
 
@@ -235,11 +127,6 @@
         flex-direction: column;
         align-items: center;
     }
-
-    .card {
-        width: 80%;
-        border-radius: 10px;
-    }
 }
 
 // Telas grandes
@@ -267,10 +154,5 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .card {
-        width: 70%;
-        border-radius: 10px;
     }
 }

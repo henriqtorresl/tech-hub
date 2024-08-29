@@ -1,57 +1,171 @@
 // Mobile
-.card {
-    padding: 10px;
-    color: #fff;
-    border-top: 1px solid #1F2937;
-    border-bottom: 1px solid #1F2937;
-    padding: 20px;
-    position: relative; // Permite que .interactions seja posicionado em relação a .card
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    &:hover {
-        .interactions {
+.card {
+    width: 95%;
+    border-radius: 10px;
+    background-color: #1F2937;
+    margin-bottom: 10px;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #011226;  
+    h4 {
+        cursor: pointer;
+
+        &:hover {
+            color: #71B7FB;
+            text-decoration: underline solid #71B7FB;
+        }
+    }
+
+    mat-icon {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.content {
+    border-bottom: 1px solid #011226;  
+    padding: 10px 0 10px 0;
+
+    h4 {
+        margin-bottom: 15px;
+    }
+}
+
+.engagement {
+    padding: 1px 0 1px 0;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #011226;  
+    font-size: 12px;
+    
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        mat-icon {
+            font-size: 14px;
             display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
 
 .interactions {
-    display: none;
-    backdrop-filter: blur(1px);
-    justify-content: center;
-    align-items: center;
-    position: absolute; // Posiciona .interactions em relação a .card
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); // Centraliza .interactions no meio da .card
-    width: 100%; // Faz com que a largura seja igual à da .card
-    height: 100%; // Faz com que a altura seja igual à da .card
-    z-index: 1; // Garante que .interactions fique sobreposto
+    padding: 5px 0 5px 0;
+    width: 100%;
+    display: flex;
 
-    div {
-        padding: 20px;
+    button {
+        border: none;
+        border-radius: 5px;
+        background-color: transparent;
+        color: #fff;
+        font-size: 15px;
+        font-family: "Lexend", sans-serif;
+        cursor: pointer;
+        padding: 5px;
+        margin-right: 15px;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 20px;
-        cursor: default;
+        transition: 0.5s;
 
         mat-icon {
-            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        &:hover {
+            background-color: #011226;
         }
     }
 }
 
 // Tablet
 @media screen and (min-width: 768px) and (max-width: 992px) {
- 
+    .header {
+        width: 90%;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        border-radius: 10px;
+    }
 }
 
 // Desktop
 @media screen and (min-width: 992px) and (max-width: 1200px) {
+    .header {
+        width: 80%;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
 
+    .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        border-radius: 10px;
+    }
 }
 
 // Telas grandes
 @media screen and (min-width: 1200px) {
+    .header {
+        width: 70%;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
 
+    .body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 70%;
+        border-radius: 10px;
+    }
 }
