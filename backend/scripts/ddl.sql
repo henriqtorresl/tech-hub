@@ -54,3 +54,21 @@ CREATE TABLE Mensagem (
     CONSTRAINT FK_Mensagem_Usuario_Remetente FOREIGN KEY (id_usuario_remetente) REFERENCES Usuario (id_usuario),
     CONSTRAINT FK_Mensagem_Usuario_Destinatario FOREIGN KEY (id_usuario_destinatario) REFERENCES Usuario (id_usuario)
 );
+
+-- Procedures
+
+-- Função que cria uma conversa, caso ela não exista
+CREATE OR REPLACE FUNCTION criar_conversa(usuario_1 INTEGER, usuario_2 INTEGER)
+RETURNS VOID AS
+$$
+BEGIN 
+	PERFORM * FROM conversa c 
+    WHERE (c.id_usuario_1 = usuario_1 AND c.id_usuario_2 = usuario_2)
+    OR (c.id_usuario_1 = usuario_2 AND c.id_usuario_2 = usuario_1);	
+    IF NOT FOUND THEN
+    	-- Se não existe uma conversa entre esses dois usuários, eu crio uma nova conversa, se não, não faço nada
+		INSERT INTO conversa (id_usuario_1, id_usuario_2) VALUES (usuario_1, usuario_2);
+	END IF;
+END;
+$$
+LANGUAGE plpgsql;
