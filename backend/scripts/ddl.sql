@@ -35,7 +35,11 @@ CREATE TABLE Comentario (
 );
 
 CREATE TABLE Conversa (
-    id_conversa SERIAL PRIMARY KEY
+    id_conversa SERIAL PRIMARY KEY,
+    id_usuario_1 INTEGER,
+    id_usuario_2 INTEGER,
+    FOREIGN KEY (id_usuario_1) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_usuario_2) REFERENCES usuario(id_usuario)
 );
 
 CREATE TABLE Mensagem (
