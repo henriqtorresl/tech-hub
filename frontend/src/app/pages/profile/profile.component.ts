@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIdUser();
+    console.log('id do usuario: ', this.idUser);
     this.verifyProfile();
     this.getPersonalData();
     this.getUserPosts();

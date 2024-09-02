@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: '',  pathMatch: "full", redirectTo: "home" },
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'chat', component: ChatComponent, canActivate: [authGuard] },
+  { path: 'my-profile/:id', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'profile/:id', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'auth', component: AuthComponent },
   { path: '**', redirectTo: 'home' },   // Qualquer outra rota da aplicação redireciona para home
