@@ -64,14 +64,14 @@ export default class UserRepository {
         }
     }
 
-    async getPersonalData(idUsuario: string) {
+    async getPersonalData(idUser: string) {
         let client: any;
         let user: any;
         const sql = `
             SELECT * FROM usuario u 
             WHERE id_usuario = $1;
         `;
-        const values = [idUsuario];
+        const values = [idUser];
 
         try {
             client = await connection();
@@ -82,6 +82,26 @@ export default class UserRepository {
         } finally {
             if (client) client.release();
             return user;
+        }
+    }
+
+    async getName(idUser: number) {
+        let client: any;
+        let name: string;
+        const sql: string = `
+            SELECT nome FROM usuario u WHERE id_usuario = $1;
+        `;
+        const values = [idUser];
+
+        try {
+            client = await connection();
+            const response = await client.query(sql, values);
+            name = response.rows[0].nome;
+        } catch (err) {
+            console.error('\nErro ao buscar o nome usuario:', err);
+        } finally {
+            if (client) client.release();
+            return name!;
         }
     }
 

@@ -8,8 +8,12 @@ export default class UserService {
         this.repository = new UserRepository();
     }
 
-    async getPersonalData(idUsuario: string) {
-        return await this.repository.getPersonalData(idUsuario);
+    async getPersonalData(idUser: string) {
+        return await this.repository.getPersonalData(idUser);
+    }
+
+    async getName(idUser: number) {
+        return await this.repository.getName(idUser);
     }
 
 }
