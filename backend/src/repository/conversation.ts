@@ -1,4 +1,5 @@
 import { connection } from '../config/connection';
+import { CreateConversationResponse } from '../interfaces/conversation';
 
 export default class ConversationRepository {
 
@@ -25,21 +26,24 @@ export default class ConversationRepository {
         }
     }
 
-    async insertIfNotExists(idUser1: number, idUser2: number) {
+    async insertIfNotExists(idUser1: number, idUser2: number): Promise<CreateConversationResponse> {
         let client: any;
+        let createConversationResponse: CreateConversationResponse;
         // Chama uma procedure que eu criei no banco:
         const sql = `
-            SELECT criar_conversa($1, $2);
+            SELECT criar_conversa($1, $2) AS msg;
         `;
         const values = [idUser1, idUser2];
 
         try {
             client = await connection();
-            await client.query(sql, values);
+            const response = await client.query(sql, values);
+            createConversationResponse = response.rows[0];
         } catch (err) {
             console.error('\nErro ao criar conversas:', err);
         } finally {
             if (client) client.release();
+            return createConversationResponse!;
         }
     }
 

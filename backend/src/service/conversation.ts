@@ -1,4 +1,4 @@
-import { Conversation, ConversationResponse } from '../interfaces/conversation';
+import { Conversation, ConversationResponse, CreateConversationResponse } from '../interfaces/conversation';
 import ConversationRepository from '../repository/conversation';
 import UserService from './user';
 
@@ -41,6 +41,10 @@ export default class ConversationService {
         }));
 
         return response;
+    }
+
+    async insertIfNotExists(idUser1: number, idUser2: number): Promise<CreateConversationResponse> {
+        return await this.repository.insertIfNotExists(idUser1, idUser2);
     }
 
 }

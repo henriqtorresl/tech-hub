@@ -5,7 +5,7 @@ import checkToken from '../middleware/verifyToken';
 const conversationRouter = Router();
 const controller = new ConversationController();
 
-conversationRouter.get('/user/:id', checkToken,  controller.getConversations.bind(controller));
-// conversationRouter.post('', );
+conversationRouter.get('/user/:id', checkToken, controller.getConversations.bind(controller));
+conversationRouter.post('', checkToken, controller.insertIfNotExists.bind(controller));
 
 export default conversationRouter;
