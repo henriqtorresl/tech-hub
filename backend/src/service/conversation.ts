@@ -12,8 +12,34 @@ export default class ConversationService {
         this.userService = new UserService();
     }
 
+    async getOne(idConversation: number, idUser: number) {
+        const conversation: Conversation = await this.repository.getOne(idConversation);
+        let nomeDestinatario: string;
+        let idUserRemetente: number;
+        let idUserDestinatario: number;
+
+        if (conversation.id_usuario_1 !== idUser) {
+            nomeDestinatario = await this.userService.getName(conversation.id_usuario_1);
+            idUserDestinatario = conversation.id_usuario_1;
+            idUserRemetente = conversation.id_usuario_2;
+        } else {
+            nomeDestinatario = await this.userService.getName(conversation.id_usuario_2);
+            idUserDestinatario = conversation.id_usuario_2;
+            idUserRemetente = conversation.id_usuario_1;
+        }
+
+        const response: ConversationResponse = {
+            id_conversa: conversation.id_conversa,
+            id_usuario_remetente: idUserRemetente,
+            id_usuario_destinatario: idUserDestinatario,
+            nome_usuario_destinatario: nomeDestinatario
+        };
+
+        return response;
+    }
+
     async getConversations(idUser: string): Promise<ConversationResponse[]> {
-        let conversations: Conversation[] = await this.repository.getConversations(idUser);
+        const conversations: Conversation[] = await this.repository.getConversations(idUser);
 
         const response = await Promise.all(conversations.map(async (c) => {
             let nomeDestinatario: string;

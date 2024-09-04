@@ -10,6 +10,29 @@ export default class ConversationController {
         this.service = new ConversationService();
     }
 
+    async getOne(req: Request, res: Response) {
+        const idConversation: number = Number(req.query.idConversation);
+        const idUser: number = Number(req.query.idUser);
+
+        if (!idConversation || !idUser) {
+            return res.status(400).json({ msg: 'É necessário informar o id da conversa e do usuário!' });
+        }
+
+        try {
+            const conversation: ConversationResponse = await this.service.getOne(idConversation, idUser);
+
+            if (conversation) {
+                return res.status(200).json(conversation);
+            }
+
+            return res.status(404).json({ msg: 'Não foi encontrada nenhuma conversa!' });
+        } catch (error) {
+            console.log('Erro: ', error);
+            return res.status(500).json({ msg: 'Aconteceu um erro no servidor, tente novamente mais tarde!' });
+        }
+    }
+
+
     async getConversations(req: Request, res: Response) {
         const { id } = req.params;
 
@@ -37,7 +60,9 @@ export default class ConversationController {
         try {
             const response: CreateConversationResponse = await this.service.insertIfNotExists(body.usuario_1, body.usuario_2);
 
-            if (response) {
+            if (response.id_conversa == 0) {
+                return res.status(404).json({ msg: 'Não foi possível criar a coversa.' });
+            } else {
                 return res.status(200).json(response);
             }
 
