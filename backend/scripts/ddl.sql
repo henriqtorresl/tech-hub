@@ -58,24 +58,32 @@ CREATE TABLE Mensagem (
 -- Procedures
 
 -- Função que cria uma conversa, caso ela não exista
-CREATE FUNCTION criar_conversa(usuario_1 INTEGER, usuario_2 INTEGER)
-RETURNS TEXT AS
+CREATE OR REPLACE FUNCTION criar_conversa(usuario_1 INTEGER, usuario_2 INTEGER)
+RETURNS INTEGER AS
 $$
+DECLARE 
+	conversa INTEGER;
+	nova_conversa INTEGER;
 BEGIN 
 	IF (usuario_1 = usuario_2) THEN
-		RETURN 'Não é possível criar uma conversa entre o mesmo usuário.';
+	    -- Não pode existir essa conversa, então retorno 0...
+		RETURN 0;
 	END IF;
 	
-	PERFORM * FROM conversa c 
+	SELECT id_conversa INTO conversa c  
+	FROM conversa c 
     WHERE (c.id_usuario_1 = usuario_1 AND c.id_usuario_2 = usuario_2)
     OR (c.id_usuario_1 = usuario_2 AND c.id_usuario_2 = usuario_1);	
-    IF NOT FOUND THEN
+   
+    IF (conversa IS NOT NULL) THEN
+    -- a Conversa ja existe, retorno o id dela...
+    	RETURN conversa;
+    ELSE 
     	-- Se não existe uma conversa entre esses dois usuários, eu crio uma nova conversa, se não, não faço nada
-		INSERT INTO conversa (id_usuario_1, id_usuario_2) VALUES (usuario_1, usuario_2);
-		RETURN 'Conversa criada!';
+		INSERT INTO conversa (id_usuario_1, id_usuario_2) VALUES (usuario_1, usuario_2)
+		RETURNING id_conversa INTO nova_conversa;
+		RETURN nova_conversa;
 	END IF;
-
-	RETURN 'Essa conversa já existe.';
 END;
 $$
 LANGUAGE plpgsql;
