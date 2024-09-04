@@ -22,6 +22,7 @@ import { MaskCpfPipe } from './pipes/mask-cpf.pipe';
 import { PostComponent } from './components/post/post.component';
 import { FormatCpfPipe } from './pipes/format-cpf.pipe';
 import { FormatPhonePipe } from './pipes/format-phone.pipe';
+import { ConversationComponent } from './components/conversation/conversation.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FormatPhonePipe } from './pipes/format-phone.pipe';
     MaskCpfPipe,
     PostComponent,
     FormatCpfPipe,
-    FormatPhonePipe
+    FormatPhonePipe,
+    ConversationComponent
   ],
   imports: [
     BrowserModule,

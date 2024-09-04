@@ -4,31 +4,24 @@
             <h2>Conversas</h2>
         </div>
 
-        <!-- Aqui vai ter as conversas
-        <ng-container *ngFor="let item of ['', '', '', '']">
+        <!-- Trazer a última mensagem da conversa... -->
+        <ng-container *ngFor="let conversation of conversations">
             <section>
-                
+                <h4>{{ conversation.nome_usuario_destinatario }}</h4>
+                <!-- Adicionar uma condição aqui -->
+                <p>
+                    Vocês ainda não trocaram mensagens...
+                    <mat-icon>
+                        sentiment_dissatisfied
+                    </mat-icon>
+                </p>
             </section>
-        </ng-container> -->
+        </ng-container>
     </div>
 
     <div class="conversation">
-        <div>
-            <h3>Nome</h3>
-            <button>
-                <mat-icon>
-                    info
-                </mat-icon>
-            </button>
-        </div>
-        <section>
-                
-        </section>
-        <form>
-            <input type="text" matInput>
-            <button mat-icon-button type="submit">
-                <mat-icon>send</mat-icon>
-            </button>
-        </form>
+        <ng-container *ngIf="openConversation">
+            <app-conversation></app-conversation>
+        </ng-container>
     </div>
 </div>

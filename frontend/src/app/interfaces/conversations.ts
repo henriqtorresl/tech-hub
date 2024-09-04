@@ -11,5 +11,5 @@ export interface CreateConversation {
 }
 
 export interface CreateConversationResponse {
-    msg: string;
+    id_conversa: number;
 }

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="title">
+        <h3>{{ conversation.nome_usuario_destinatario }}</h3>
+        <button (click)="navigateToUserPage()">
+            <mat-icon>
+                info
+            </mat-icon>
+        </button>
+    </div>
+    <section class="body">
+            
+    </section>
+    <form class="send-message">
+        <input type="text" matInput>
+        <button mat-icon-button type="submit">
+            <mat-icon>send</mat-icon>
+        </button>
+    </form>
+</div>

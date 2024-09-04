@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { switchMap, take } from 'rxjs';
+import { CreateConversation, CreateConversationResponse } from 'src/app/interfaces/conversations';
 import { Post } from 'src/app/interfaces/post';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConversationService } from 'src/app/services/conversation.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -25,12 +27,12 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private postService: PostService
+    private postService: PostService,
+    private conversationService: ConversationService
   ) { }
 
   ngOnInit(): void {
     this.getIdUser();
-    console.log('id do usuario: ', this.idUser);
     this.verifyProfile();
     this.getPersonalData();
     this.getUserPosts();
@@ -53,7 +55,25 @@ export class ProfileComponent implements OnInit {
   }
 
   sendMessage(): void {
-    // Logica de enviar mensagem
+    const senderUser: number = Number(localStorage.getItem('idUser'));
+    const body: CreateConversation = {
+      usuario_1: senderUser,
+      usuario_2: Number(this.idUser)
+    }
+
+    this.conversationService.insertIfNotExists(body).pipe(
+      switchMap((response: CreateConversationResponse) =>
+        this.conversationService.getOne(response.id_conversa, senderUser)
+      )
+    ).subscribe((conversation) => {
+      const queryParams: Params = {
+        ['openConversation']: true
+      }
+
+      // Conteudo que vai ser emitido pelo observable...
+      this.conversationService.shareConversation(conversation);
+      this.router.navigate(['chat'], { queryParams });
+    });
   }
 
   getPersonalData(): void {
