@@ -57,6 +57,31 @@
     display: none;
 }
 
+.no-open-conversation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+
+    section {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 2px solid #fff;
+
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+}
+
 // Tablet
 @media screen and (min-width: 768px) and (max-width: 992px) {
     .container {

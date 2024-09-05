@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { combineLatest, take } from 'rxjs';
 import { Conversation } from 'src/app/interfaces/conversations';
 import { ConversationService } from 'src/app/services/conversation.service';
 
@@ -37,17 +38,23 @@ export class ChatComponent implements OnInit {
   }
 
   conversationIsOpen(): void {
-    this.activatedRoute.queryParamMap.subscribe((response: any) => {
-      const { params } = response;
+    combineLatest([
+      this.conversationService.currentConversation,
+      this.activatedRoute.queryParamMap
+    ])
+    .pipe(take(1))
+    .subscribe(([conversation, activatedRoute]: any) => {
+      const { params } = activatedRoute;
 
-      if (params.openConversation) {
+      if (params.openConversation && conversation.id_conversa != 0) {
         this.openConversation = params.openConversation;
       }
     });
   }
 
-  // openConversation(): void {
-
-  // }
+  sendMessage(conversation: Conversation): void {
+    this.conversationService.shareConversation(conversation);   // Atribui o valor que vai ser emitido pelo observable currentConversation...
+    this.openConversation = true;
+  }
 
 }

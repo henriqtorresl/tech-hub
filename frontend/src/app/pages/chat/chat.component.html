@@ -6,7 +6,7 @@
 
         <!-- Trazer a última mensagem da conversa... -->
         <ng-container *ngFor="let conversation of conversations">
-            <section>
+            <section (click)="sendMessage(conversation)">
                 <h4>{{ conversation.nome_usuario_destinatario }}</h4>
                 <!-- Adicionar uma condição aqui -->
                 <p>
@@ -20,8 +20,18 @@
     </div>
 
     <div class="conversation">
-        <ng-container *ngIf="openConversation">
+        <ng-container *ngIf="openConversation else noOpenConversation">
             <app-conversation></app-conversation>
         </ng-container>
+
+        <ng-template #noOpenConversation>
+            <div class="no-open-conversation">
+                <section>
+                    <mat-icon>chat</mat-icon>
+                </section>
+                <h2>Suas mensagens</h2>
+                <h4>Envie mensagens privadas para outro usuário</h4>
+            </div>
+        </ng-template>
     </div>
 </div>
